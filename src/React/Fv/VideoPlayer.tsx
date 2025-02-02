@@ -1,24 +1,9 @@
-import { useEffect, useRef } from "react";
-import YTPlayer from "";
+import ReactPlayer from "react-player/youtube";
 
 const VideoPlayer = () => {
-  const playerRef = useRef(null);
-
-  useEffect(() => {
-    if (playerRef.current) {
-      const player = new YTPlayer(playerRef.current, {
-        autoplay: true,
-      });
-
-      player.load("M7lc1UVf-VE");
-
-      return () => {
-        player.destroy();
-      };
-    }
-  }, []);
-
-  return <div ref={playerRef} style={{ width: "640px", height: "360px" }} />;
+  return (
+    <ReactPlayer url="https://www.youtube.com/watch?v=DiU4ibWzEpg&t=41s" playing controls />
+  );
 };
 
 export default VideoPlayer;

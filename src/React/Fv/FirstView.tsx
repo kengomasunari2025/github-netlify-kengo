@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import $ from "jquery";
-import "ytplayer";
+import VideoPlayer from "./VideoPlayer";
 
 const FirstView = () => {
   const [text, setText] = useState("");
@@ -8,16 +7,12 @@ const FirstView = () => {
   const typingElementRef = useRef(null);
 
   useEffect(() => {
-    $("#videoPlay").YTPlayer();
-  }, []);
-
-  useEffect(() => {
-    const Typing = (sentence:any) => {
+    const Typing = (sentence: any) => {
       if (isTypingRef.current) return;
       isTypingRef.current = true;
       setText("");
-      
-      sentence.split("").forEach((character:any, index:any) => {
+
+      sentence.split("").forEach((character: any, index: any) => {
         setTimeout(() => {
           setText((prevText) => prevText + character);
           if (index === sentence.length - 1) {
@@ -31,7 +26,7 @@ const FirstView = () => {
 
     Typing("Made by React");
   }, []);
-
+  //   https://www.youtube.com/watch?v=DiU4ibWzEpg&t=41s
   return (
     <div className="video-container bg-dark" id="top">
       <div className="text-white" style={{ whiteSpace: "nowrap" }}>
@@ -39,19 +34,7 @@ const FirstView = () => {
           <p ref={typingElementRef}>{text}</p>
         </h2>
       </div>
-      <div
-        id="videoPlay"
-        data-property='{
-          "videoURL": "jbBVV-BGtfY",
-          "containment": ".video-container",
-          "mute": true,
-          "loop": true,
-          "autoPlay": true,
-          "startAt": 33,
-          "showControls": false,
-          "showYTLogo": false
-        }'
-      ></div>
+      <VideoPlayer/>
     </div>
   );
 };
